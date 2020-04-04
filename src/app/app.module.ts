@@ -10,6 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -22,7 +23,8 @@ registerLocaleData(localeEs);
     AppRoutingModule,
     SharedModule,
     CoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'es' } ],
   bootstrap: [AppComponent]

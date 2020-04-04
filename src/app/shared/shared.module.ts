@@ -28,7 +28,7 @@ import { CartComponent } from './components/cart/cart.component';
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class SharedModule { }

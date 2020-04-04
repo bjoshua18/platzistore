@@ -3,28 +3,31 @@ import { ProductsService } from 'src/app/core/services/products/products.service
 import { Product } from 'src/app/core/models/product.model';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-products-list',
+  templateUrl: './products-list.component.html',
+  styleUrls: ['./products-list.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsListComponent implements OnInit {
 
   products: Product[] = [];
+  displayedColumns: string[] = ['id', 'title', 'price', 'actions'];
 
   constructor(
     private productsService: ProductsService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.fetchProducts();
-  }
-
-  clickProduct(id: number) {
-    console.log('product', id);
   }
 
   fetchProducts() {
     this.productsService.getAllProducts()
       .subscribe(products => this.products = products);
   }
+
+  deleteProduct(id: string) {
+    this.productsService.deleteProduct(id)
+      .subscribe(res => this.products = this.products.filter(product => product.id !== id));
+  }
+
 }
