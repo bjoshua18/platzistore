@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AdminGuard } from './admin.guard';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -28,10 +29,15 @@ const routes: Routes = [
         path: 'order',
         loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
       },
+      {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+      }
     ]
   },
   {
     path: 'admin',
+    canActivate: [AdminGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
